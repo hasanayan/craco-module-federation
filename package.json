@@ -1,0 +1,39 @@
+{
+  "name": "craco-module-federation",
+  "version": "1.0.6",
+  "description": "Enable Module Federation  your CRA project without ejecting or losing update support of react-scripts",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:app1": "cd test/app1 && npm run start",
+    "start:app2": "cd test/app2 && npm run start",
+    "start": "npm-run-all --parallel start:*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hasanayan/craco-plugin-single-spa-application.git"
+  },
+  "keywords": [
+    "module federation",
+    "modulefederation",
+    "module-federation",
+    "craco",
+    "cra4",
+    "cra",
+    "create-react-app"
+  ],
+  "author": "hasanayan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hasanayan/craco-module-federation/issues"
+  },
+  "homepage": "https://github.com/hasanayan/craco-module-federation#readme",
+  "dependencies": {
+    "@craco/craco": "^6.0.0",
+    "external-remotes-plugin": "^1.0.0"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5",
+    "webpack": "^5.39.1"
+  }
+}
