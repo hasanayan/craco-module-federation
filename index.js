@@ -55,10 +55,9 @@ module.exports = {
       useExternalRemotesPlugin && new ExternalTemplateRemotesPlugin(),
     ].filter(Boolean);
 
-    cracoConfig.webpack.plugins.remove = ["WebpackManifestPlugin"];
-
     cracoConfig.webpack.plugins.remove = [
-      ...cracoConfig.webpack.plugins.remove,
+      ...(cracoConfig.webpack.plugins.remove || []),
+      "WebpackManifestPlugin",
       removeWatchMissingNodeModulesPlugin && "WatchMissingNodeModulesPlugin",
     ].filter(Boolean);
 
