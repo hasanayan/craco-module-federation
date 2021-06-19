@@ -14,6 +14,7 @@ module.exports = {
     const fastRefreshEnabled = process.env.FAST_REFRESH !== "false";
     const isEnvDevelopment = env === "development";
 
+    console.log(webpackConfig.plugins);
     webpackConfig.output = {
       ...webpackConfig.output,
       publicPath: "auto",
@@ -26,9 +27,12 @@ module.exports = {
         isEnvDevelopment || namedModuleIdsOnProduction ? "named" : undefined,
     };
 
-    webpackConfig.plugins[1].userOptions.hash = true;
+    const htmlWebpackPlugin = webpackConfig.plugins.find(
+      (plugin) => (plugin.constructor.name = "HtmlWebpackPlugin")
+    );
+    htmlWebpackPlugin.userOptions.hash = true;
     if (fastRefreshEnabled && isEnvDevelopment) {
-      webpackConfig.plugins[1].userOptions.chunks = ["main"];
+      htmlWebpackPlugin.userOptions.chunks = ["main"];
     }
 
     return webpackConfig;
