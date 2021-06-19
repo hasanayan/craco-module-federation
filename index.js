@@ -31,9 +31,8 @@ module.exports = {
     );
 
     htmlWebpackPlugin.userOptions.hash = true;
-    if (fastRefreshEnabled && isEnvDevelopment) {
-      htmlWebpackPlugin.userOptions.chunks = ["main"];
-    }
+    htmlWebpackPlugin.userOptions.chunks = ["main"];
+    htmlWebpackPlugin.userOptions.publicPath = "/";
 
     return webpackConfig;
   },
