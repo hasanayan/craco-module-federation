@@ -1,6 +1,6 @@
 {
   "name": "craco-module-federation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Enable Module Federation  your CRA project without ejecting or losing update support of react-scripts",
   "main": "src/index.js",
   "scripts": {
