@@ -1,46 +1,82 @@
-# Getting Started with Create React App
+# craco-module-federation
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Note
 
-## Available Scripts
+THIS IS NOT PRODUCTION READY
+Webpack 5 support of CRA is still in its alpha phase and there might be breaking changes in either CRA5 or this plugin in the future.
 
-In the project directory, you can run:
+Add module-federation support to your CRA5 project without ejecting and losing update support of react-scripts
 
-### `yarn start`
+![](https://img.shields.io/npm/v/craco-module-federation.svg?style=flat)
+![](https://img.shields.io/npm/dt/craco-module-federation.svg?style=flat)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Install
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+npm install craco-module-federation --save-dev
+```
 
-### `yarn test`
+## Usage
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Add the plugin into your craco.config.js;
 
-### `yarn build`
+```
+cracoModuleFederation = require('craco-module-federation');
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+module.exports = {
+    plugins: [{
+        plugin: cracoModuleFederation,
+      },
+    }]
+}
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. create a file named `modulefederation.config.js` in the project root. You should export ModuleFederationPlugin constructor options as json from this module. For example;
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+const deps = require("./package.json").dependencies;
 
-### `yarn eject`
+console.log(process.env.ROOT_PATH_MODE);
+module.exports = {
+  name: "app1",
+  exposes: {
+    "./Button": "./src/Button",
+  },
+  remotes: {
+    app2: "app2@http://localhost:3002/remoteEntry.js",
+  },
+  filename: "remoteEntry.js",
+  shared: {
+    ...deps,
+    react: {
+      singleton: true,
+      requiredVersion: deps["react"],
+    },
+    "react-dom": {
+      singleton: true,
+      requiredVersion: deps["react-dom"],
+    },
+  },
+};
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. Update the scripts section of your package.json as follows:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+  ...
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "craco:build": "craco build",
+    "craco:start": "craco start",
+    ...
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Testing the plugin locally
 
-## Learn More
+There are two test apps in this repository inside test folder (app1 and app2). Install their dependencies on them using yarn (`yarn install`) and hit `yarn start` on both of them. When you navigate to app1 it should render the exported button from app2 that says `hello from app2`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## License
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Licensed under the MIT License, Copyright ©️ 2021 Hasan Ayan. See [LICENSE.md](LICENSE) for more information.
