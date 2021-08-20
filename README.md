@@ -13,7 +13,7 @@ Add module-federation support to your CRA5 project without ejecting and losing u
 ## Install
 
 ```
-npm install craco-module-federation --save-dev
+npm install craco-module-federation@next --save-dev
 ```
 
 ## Usage

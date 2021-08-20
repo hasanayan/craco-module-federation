@@ -1,6 +1,6 @@
 {
   "name": "craco-module-federation",
-  "version": "0.0.1-rc.1",
+  "version": "1.1.0-rc.1",
   "description": "Add module federation support to your CRA5 application without ejecting",
   "repository": {
     "type": "git",
