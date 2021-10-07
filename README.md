@@ -13,7 +13,7 @@ Add module-federation support to your CRA5 project without ejecting and losing u
 ## Install
 
 ```
-npm install craco-module-federation@latest --save-dev
+npm install craco-module-federation --save-dev
 ```
 
 ## Usage
@@ -26,8 +26,9 @@ cracoModuleFederation = require('craco-module-federation');
 module.exports = {
     plugins: [{
         plugin: cracoModuleFederation,
+        options: { useNamedChunkIds:true } //THIS LINE IS OPTIONAL
       },
-    }]
+    ]
 }
 ```
 

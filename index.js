@@ -18,11 +18,15 @@ const getModuleFederationConfigPath = (additionalPaths = []) => {
 };
 
 module.exports = {
-  overrideWebpackConfig: ({ webpackConfig }) => {
+  overrideWebpackConfig: ({ webpackConfig, pluginOptions }) => {
     const moduleFederationConfigPath = getModuleFederationConfigPath();
 
     if (moduleFederationConfigPath) {
       webpackConfig.output.publicPath = "auto";
+
+      if (pluginOptions?.useNamedChunkIds) {
+        webpackConfig.optimization.chunkIds = "named";
+      }
 
       const htmlWebpackPlugin = webpackConfig.plugins.find(
         (plugin) => plugin.constructor.name === "HtmlWebpackPlugin"
