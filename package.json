@@ -27,6 +27,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@craco/craco": "^6.0.0"
+    "@craco/craco": "^6.3.0"
   }
 }
