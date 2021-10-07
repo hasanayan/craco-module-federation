@@ -21,7 +21,7 @@ npm install craco-module-federation --save-dev
 1. Add the plugin into your craco.config.js;
 
 ```
-cracoModuleFederation = require('craco-module-federation');
+const cracoModuleFederation = require('craco-module-federation');
 
 module.exports = {
     plugins: [{
@@ -37,7 +37,6 @@ module.exports = {
 ```
 const deps = require("./package.json").dependencies;
 
-console.log(process.env.ROOT_PATH_MODE);
 module.exports = {
   name: "app1",
   exposes: {
