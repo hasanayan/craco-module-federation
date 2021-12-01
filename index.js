@@ -28,6 +28,10 @@ module.exports = {
         webpackConfig.optimization.chunkIds = "named";
       }
 
+      if (pluginOptions?.useChunkFilename) {
+        webpackConfig.output.chunkFilename = "[id].[contenthash].js";
+      }
+
       const htmlWebpackPlugin = webpackConfig.plugins.find(
         (plugin) => plugin.constructor.name === "HtmlWebpackPlugin"
       );
