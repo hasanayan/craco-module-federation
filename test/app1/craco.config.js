@@ -4,6 +4,7 @@ module.exports = {
   plugins: [
     {
       plugin: cracoModuleFederationPlugin,
+      options: { useNamedChunkIds: true, useChunkFilename: true },
     },
   ],
 };
