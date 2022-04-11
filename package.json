@@ -27,6 +27,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@craco/craco": "^6.3.0"
+    "@craco/craco": "7.0.0-alpha.3",
+    "webpack": "^5.72.0"
   }
 }
