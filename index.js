@@ -1,4 +1,4 @@
-const webpack = require("webpack");
+const { ModuleFederationPlugin } = require("webpack").container;
 const paths = require("react-scripts/config/paths");
 
 const getModuleFederationConfigPath = (additionalPaths = []) => {
@@ -40,7 +40,7 @@ module.exports = {
 
       webpackConfig.plugins = [
         ...webpackConfig.plugins,
-        new webpack.container.ModuleFederationPlugin(
+        new ModuleFederationPlugin(
           require(moduleFederationConfigPath)
         ),
       ];
