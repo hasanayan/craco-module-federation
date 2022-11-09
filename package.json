@@ -1,6 +1,6 @@
 {
   "name": "craco-module-federation",
-  "version": "1.1.0",
+  "version": "2.0.0",
   "description": "Add module federation support to your CRA5 application without ejecting",
   "repository": {
     "type": "git",
@@ -27,6 +27,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@craco/craco": "^6.3.0"
+    "@craco/craco": "^7"
+  },
+  "peerDependencies": {
+    "webpack": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.18.3",
+    "@types/webpack": "^5.0.0"
   }
 }
