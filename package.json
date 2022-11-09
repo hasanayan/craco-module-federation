@@ -30,11 +30,11 @@
     "@craco/craco": "^7"
   },
   "peerDependencies": {
-    "webpack": "^5.0.0",
-    "react-scripts": "^5.0.1"
+    "webpack": "^5",
+    "react-scripts": "^5"
   },
   "devDependencies": {
-    "@types/node": "^16.18.3",
-    "@types/webpack": "^5.0.0"
+    "@types/node": "^16",
+    "@types/webpack": "^5"
   }
 }
