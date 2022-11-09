@@ -30,7 +30,8 @@
     "@craco/craco": "^7"
   },
   "peerDependencies": {
-    "webpack": "^5.0.0"
+    "webpack": "^5.0.0",
+    "react-scripts": "^5.0.1"
   },
   "devDependencies": {
     "@types/node": "^16.18.3",
