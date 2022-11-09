@@ -1,9 +1,9 @@
-const webpack = require("webpack");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const paths = require("react-scripts/config/paths");
 
 const getModuleFederationConfigPath = (additionalPaths = []) => {
-  const path = require("path");
-  const fs = require("fs");
+  const path = require("node:path");
+  const fs = require("node:fs");
   const appDirectory = fs.realpathSync(process.cwd());
   const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath);
 
@@ -40,9 +40,7 @@ module.exports = {
 
       webpackConfig.plugins = [
         ...webpackConfig.plugins,
-        new webpack.container.ModuleFederationPlugin(
-          require(moduleFederationConfigPath)
-        ),
+        new ModuleFederationPlugin(require(moduleFederationConfigPath)),
       ];
 
       // webpackConfig.module = {
