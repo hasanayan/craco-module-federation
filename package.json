@@ -1,5 +1,5 @@
 {
-  "name": "craco-module-federation",
+  "name": "@kne/craco-module-federation",
   "version": "1.1.0",
   "description": "Add module federation support to your CRA5 application without ejecting",
   "repository": {
@@ -26,7 +26,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "@craco/craco": "^6.3.0"
+  "peerDependencies": {
+    "@craco/craco": ">=6"
   }
 }
