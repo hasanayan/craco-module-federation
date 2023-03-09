@@ -22,6 +22,8 @@ module.exports = {
     const moduleFederationConfigPath = getModuleFederationConfigPath();
 
     if (moduleFederationConfigPath) {
+      const moduleFederationConfig = require(moduleFederationConfigPath);
+
       webpackConfig.output.publicPath = "auto";
 
       if (pluginOptions?.useNamedChunkIds) {
@@ -35,14 +37,36 @@ module.exports = {
       htmlWebpackPlugin.userOptions = {
         ...htmlWebpackPlugin.userOptions,
         publicPath: paths.publicUrlOrPath,
-        excludeChunks: [require(moduleFederationConfigPath).name],
+        excludeChunks: [moduleFederationConfig.name],
       };
 
       webpackConfig.plugins = [
         ...webpackConfig.plugins,
-        new webpack.container.ModuleFederationPlugin(
-          require(moduleFederationConfigPath)
-        ),
+        new webpack.container.ModuleFederationPlugin({
+          ...moduleFederationConfig,
+          shared: moduleFederationConfig.shared
+            ? Object.fromEntries(
+                Object.entries(moduleFederationConfig.shared).map(
+                  ([key, value]) => {
+                    if (
+                      typeof value === "object" &&
+                      !Array.isArray(value) &&
+                      value !== null &&
+                      value.singleton
+                    ) {
+                      const newValue = { ...value };
+                      if (process.env.NODE_ENV === "production") {
+                        newValue.requiredVersion = "*";
+                        newValue.version = "0";
+                      }
+                      return [key, newValue];
+                    }
+                    return [key, value];
+                  }
+                )
+              )
+            : null,
+        }),
       ];
 
       // webpackConfig.module = {
